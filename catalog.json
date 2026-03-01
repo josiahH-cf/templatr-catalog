@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Quick Research Summary",
+    "description": "Rapidly distil a topic into a structured summary with key facts, open questions, and next steps.",
+    "author": "templatr-team",
+    "tags": ["research", "productivity", "summarization"],
+    "version": "1.0.0",
+    "download_url": "https://raw.githubusercontent.com/josiahH-cf/templatr-catalog/main/templates/quick_research_summary.json"
+  },
+  {
+    "name": "Code Review Checklist",
+    "description": "Systematic code review prompt covering correctness, security, readability, and test coverage.",
+    "author": "templatr-team",
+    "tags": ["code", "review", "engineering"],
+    "version": "1.0.0",
+    "download_url": "https://raw.githubusercontent.com/josiahH-cf/templatr-catalog/main/templates/code_review_checklist.json"
+  },
+  {
+    "name": "Decision Framework",
+    "description": "Structured template for evaluating options with weighted criteria and a recommendation.",
+    "author": "templatr-team",
+    "tags": ["decision-making", "strategy", "planning"],
+    "version": "1.0.0",
+    "download_url": "https://raw.githubusercontent.com/josiahH-cf/templatr-catalog/main/templates/decision_framework.json"
+  }
+]

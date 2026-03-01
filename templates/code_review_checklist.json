@@ -1,0 +1,10 @@
+{
+  "name": "Code Review Checklist",
+  "description": "Systematic code review prompt covering correctness, security, readability, and test coverage.",
+  "trigger": ":codereview",
+  "content": "You are a senior software engineer performing a thorough code review.\n\nCode to review:\n```\n{{code}}\n```\n\nLanguage / framework context: {{context}}\n\nReview the code across these dimensions:\n\n## Correctness\n- Are there logic errors or edge cases not handled?\n- Are error paths handled gracefully?\n\n## Security\n- Are there injection risks, unsafe deserialization, or exposed secrets?\n- Is input validated and output sanitized?\n\n## Readability & Maintainability\n- Is the intent clear without reading implementation details?\n- Are naming, structure, and comments good?\n\n## Performance\n- Are there obvious bottlenecks or unnecessary allocations?\n\n## Tests\n- What test cases are missing?\n- Is the existing test coverage adequate?\n\n## Summary\nProvide an overall verdict (Approve / Request Changes / Block) with a brief rationale.",
+  "variables": [
+    {"name": "code", "label": "Code to review", "multiline": true},
+    {"name": "context", "label": "Language / framework context (e.g. Python FastAPI)", "multiline": false}
+  ]
+}

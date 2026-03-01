@@ -1,0 +1,9 @@
+{
+  "name": "Quick Research Summary",
+  "description": "Rapidly distil a topic into a structured summary with key facts, open questions, and next steps.",
+  "trigger": ":qresearch",
+  "content": "You are an expert research assistant. Produce a structured summary.\n\nTopic: {{topic}}\n\nRespond with:\n\n## Overview\nWhat this topic is and why it matters (3-5 sentences).\n\n## Key Facts\n- (5-7 bullet points of the most important facts)\n\n## Open Questions\n- (2-3 questions that are still unresolved or worth investigating)\n\n## Recommended Next Steps\n1. \n2. \n3. \n\n## Useful Sources\n- (Name two or three authoritative references)",
+  "variables": [
+    {"name": "topic", "label": "Topic to research", "multiline": true}
+  ]
+}

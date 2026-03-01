@@ -1,0 +1,12 @@
+{
+  "name": "Decision Framework",
+  "description": "Structured template for evaluating options with weighted criteria and a recommendation.",
+  "trigger": ":decide",
+  "content": "You are a structured decision advisor. Help evaluate a decision using a weighted criteria matrix.\n\nDecision to make: {{decision}}\n\nOptions being considered:\n{{options}}\n\nKey criteria (what matters most): {{criteria}}\n\nConstraints or non-negotiables: {{constraints}}\n\nProvide:\n\n## Situation Summary\nBriefly restate the decision in your own words.\n\n## Criteria Weights\nList each criterion and assign a relative weight (1-5).\n\n## Option Evaluation\nFor each option, score it against each criterion (1-5) and explain the score.\n\n## Weighted Scores\nPresent a summary table: Option | Score | Rationale\n\n## Recommendation\nState the recommended option and why, acknowledging trade-offs.\n\n## Risks & Mitigations\nList the top 2-3 risks for the recommended option and how to mitigate them.",
+  "variables": [
+    {"name": "decision", "label": "What decision are you making?", "multiline": false},
+    {"name": "options", "label": "List the options (one per line)", "multiline": true},
+    {"name": "criteria", "label": "What criteria matter most?", "multiline": true},
+    {"name": "constraints", "label": "Hard constraints or non-negotiables", "multiline": true}
+  ]
+}

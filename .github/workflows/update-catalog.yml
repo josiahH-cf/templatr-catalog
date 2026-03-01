@@ -1,0 +1,79 @@
+name: Update catalog.json
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "templates/**"
+      - "scripts/generate_catalog.py"
+  pull_request:
+    branches: [main]
+    paths:
+      - "templates/**"
+      - "catalog.json"
+      - "scripts/generate_catalog.py"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate catalog entries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate catalog.json schema
+        run: |
+          python - <<'EOF'
+          import json, sys
+          REQUIRED = {"name", "description", "author", "tags", "version", "download_url"}
+          with open("catalog.json") as f:
+              catalog = json.load(f)
+          errors = []
+          for i, entry in enumerate(catalog):
+              missing = REQUIRED - entry.keys()
+              if missing:
+                  errors.append(f"Entry {i} ({entry.get('name','?')}) missing: {missing}")
+              if not isinstance(entry.get("tags"), list):
+                  errors.append(f"Entry {i} ({entry.get('name','?')}) tags must be a list")
+          if errors:
+              print("Catalog validation errors:")
+              for e in errors:
+                  print(" ", e)
+              sys.exit(1)
+          print(f"catalog.json is valid ({len(catalog)} entries)")
+          EOF
+
+  regenerate:
+    name: Regenerate catalog.json on push to main
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate catalog.json from template files
+        run: python scripts/generate_catalog.py
+
+      - name: Commit updated catalog.json (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet catalog.json || (
+            git add catalog.json &&
+            git commit -m "chore: regenerate catalog.json [skip ci]" &&
+            git push
+          )

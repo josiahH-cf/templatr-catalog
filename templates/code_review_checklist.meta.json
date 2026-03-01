@@ -1,0 +1,6 @@
+{
+  "description": "Systematic code review prompt covering correctness, security, readability, and test coverage.",
+  "author": "templatr-team",
+  "tags": ["code", "review", "engineering"],
+  "version": "1.0.0"
+}

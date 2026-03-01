@@ -1,0 +1,6 @@
+{
+  "description": "Rapidly distil a topic into a structured summary with key facts, open questions, and next steps.",
+  "author": "templatr-team",
+  "tags": ["research", "productivity", "summarization"],
+  "version": "1.0.0"
+}
